@@ -16,6 +16,16 @@ var TestContent = "TestContent";
 var TestStatus = "open";
 
 describe('Page model', function() {
+    beforeEach('Sync tables', function(done) {
+        Page.sync({force: true})
+        .then(function() {
+            return User.sync({force: true})
+        })
+        .then(function() {
+            done();
+        });
+    });
+
     describe('urlTitle', function() {
         var Test1In = "asdfqwerty1230";
         var Test1Out = "asdfqwerty1230";
